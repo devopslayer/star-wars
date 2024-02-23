@@ -37,7 +37,8 @@ a:hover {
   background-color: #fff;
 }*/
 button {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  margin: 10px 0 0 10px;
   padding: 5px 10px;
   background-color: #0056b3;
   color: #fff;
@@ -45,6 +46,9 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.15s ease-in-out;
+}
+button[disabled] {
+  background-color: rgba(60, 67, 73, 0.50);
 }
 button:hover {
   background-color: rgba(60, 67, 73, 0.50);

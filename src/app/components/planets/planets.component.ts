@@ -7,6 +7,7 @@ interface Planet {
   population: string;
   terrain: string;
   residents: string[];
+  showResidents: boolean;
 }
 
 @Component({
@@ -19,6 +20,9 @@ export class PlanetsComponent implements OnInit {
   initialPlanetsToShow: number = 3;
   totalPlanets: number = 0;
   nextPage: string | null = null;
+  prevPage: string | null = null;
+  isPrevDisabled: boolean = true;
+  isNextDisabled: boolean = false;
 
   constructor(private apiService: ApiService) { }
 
@@ -29,15 +33,21 @@ export class PlanetsComponent implements OnInit {
   fetchPlanets() {
     this.apiService.fetchPlanets().subscribe(
       (response: any) => {
-        this.planets = response.results.slice(0, this.initialPlanetsToShow).map((result: any) => ({
+        this.planets = response.results.map((result: any) => ({
           name: result.name,
           climate: result.climate,
           population: result.population,
           terrain: result.terrain,
-          residents: result.residents
+          residents: result.residents,
+          showResidents: false,
         }));
-        this.totalPlanets = response.results.length;
+        this.totalPlanets = response.count;
         this.nextPage = response.next;
+        this.prevPage = response.previous;
+  
+        if (!this.prevPage) {
+          this.isPrevDisabled = true;
+        }
       },
       (error: any) => {
         console.error('Error fetching planets:', error);
@@ -49,20 +59,91 @@ export class PlanetsComponent implements OnInit {
     if (this.nextPage) {
       this.apiService.fetchMorePlanets(this.nextPage).subscribe(
         (response: any) => {
-          const newPlanets = response.results.slice(0, this.initialPlanetsToShow).map((result: any) => ({
-            name: result.name,
-            climate: result.climate,
-            population: result.population,
-            terrain: result.terrain,
-            residents: result.residents
-          }));
-          this.planets = [...this.planets, ...newPlanets];
-          this.nextPage = response.next;
+          this.updatePlanets(response);
         },
         (error: any) => {
           console.error('Error fetching more planets:', error);
         }
       );
     }
+  }
+
+  private updatePlanets(response: any) {
+    this.planets = response.results.slice(0, this.initialPlanetsToShow).map((result: any) => this.mapPlanet(result));
+    this.totalPlanets = response.count;
+    this.nextPage = response.next;
+    this.prevPage = response.previous;
+    this.isPrevDisabled = !this.prevPage;
+    this.isNextDisabled = !this.nextPage;
+  }
+
+  toggleResidents(planet: Planet): void {
+    planet.showResidents = !planet.showResidents;
+  }
+
+  loadPrevPage() {
+    if (this.prevPage) {
+      this.apiService.fetchPlanets(this.prevPage).subscribe(
+        (response: any) => {
+          this.planets = response.results.map((result: any) => ({
+            name: result.name,
+            climate: result.climate,
+            population: result.population,
+            terrain: result.terrain,
+            residents: result.residents,
+            showResidents: false
+          }));
+          this.totalPlanets = response.count;
+          this.nextPage = response.next;
+          this.prevPage = response.previous;
+  
+          this.isNextDisabled = false;
+          
+          if (!this.prevPage) {
+            this.isPrevDisabled = true;
+          }
+        },
+        (error: any) => {
+          console.error('Error fetching previous page:', error);
+        }
+      );
+    }
+  }
+
+  loadNextPage() {
+    if (this.nextPage) {
+      this.apiService.fetchPlanets(this.nextPage).subscribe(
+        (response: any) => {
+          this.planets = response.results.map((result: any) => ({
+            name: result.name,
+            climate: result.climate,
+            population: result.population,
+            terrain: result.terrain,
+            residents: result.residents,
+            showResidents: false
+          }));
+          this.totalPlanets = response.count;
+          this.nextPage = response.next;
+          this.prevPage = response.previous;
+          
+          this.isPrevDisabled = false;
+        },
+        (error: any) => {
+          console.error('Error fetching next page:', error);
+        }
+      );
+    }
+  }
+  
+
+  private mapPlanet(result: any): Planet {
+    return {
+      name: result.name,
+      climate: result.climate,
+      population: result.population,
+      terrain: result.terrain,
+      residents: result.residents,
+      showResidents: false
+    };
   }
 }

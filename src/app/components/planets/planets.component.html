@@ -1,31 +1,32 @@
 <div class="planets-container">
-    <div *ngFor="let planet of planets" class="planet-card">
-      <h2>{{ planet.name }}</h2>
-      <div class="planet-info">
-        <label>Climate:</label>
-        <span>{{ planet.climate }}</span>
-      </div>
-      <div class="planet-info">
-        <label>Population:</label>
-        <span>{{ planet.population }}</span>
-      </div>
-      <div class="planet-info">
-        <label>Terrain:</label>
-        <span>{{ planet.terrain }}</span>
-      </div>
-      <div class="planet-residents">
-        <label>Residents:</label>
-        <ul class="resident-list">
-          <li *ngFor="let residentUrl of planet.residents" class="resident-list-item">
-            <app-residents [residentUrl]="residentUrl"></app-residents>
-          </li>
-        </ul>
-      </div>
+  <div *ngFor="let planet of planets" class="planet-card">
+    <h2>{{ planet.name }}</h2>
+    <div class="planet-info">
+      <label>Climate: </label>
+      <span>{{ planet.climate }}</span>
     </div>
+    <div class="planet-info">
+      <label>Population: </label>
+      <span>{{ planet.population }}</span>
+    </div>
+    <div class="planet-info">
+      <label>Terrain: </label>
+      <span>{{ planet.terrain }}</span>
+    </div>
+    <button (click)="toggleResidents(planet)">Residents</button>
+    <div *ngIf="planet.showResidents" class="planet-residents">
+      <ul class="resident-list">
+        <li *ngFor="let residentUrl of planet.residents" class="resident-list-item">
+          <app-residents [residentUrl]="residentUrl"></app-residents>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="totalPlanets > initialPlanetsToShow">
-    <button (click)="loadMorePlanets()">Load More</button>
+<div class="pagination">
+  <button (click)="loadPrevPage()" [disabled]="isPrevDisabled">Previous</button>
+  <button (click)="loadNextPage()" [disabled]="isNextDisabled">Next</button>
 </div>
-  
+
 <p>Total Planets: {{ totalPlanets }}</p>
