@@ -1,0 +1,77 @@
+.planets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 900px;
+}
+
+.planet-card {
+  width: calc(30% - 20px); /* Adjust width with gap */
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.planet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.planet-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.planet-info {
+  margin-bottom: 10px;
+}
+
+.planet-info label {
+  font-weight: bold;
+  color: #333;
+}
+
+.planet-residents {
+  margin-top: 10px;
+}
+
+.resident-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resident-list-item {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+/* Add space between cards */
+/* .planet-card + .planet-card {
+  margin-left: 20px; Adjust the spacing between cards
+} */
+.planet-card {
+    margin-left: auto;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 1024px) {
+  .planet-card {
+    width: calc(45% - 20px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .planet-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .planet-card {
+    width: 100%;
+  }
+}

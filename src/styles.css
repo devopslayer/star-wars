@@ -28,3 +28,24 @@ a:hover {
 a:hover {
   color: #125699;
 }
+/* .planet-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  background-color: #fff;
+}*/
+button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+button:hover {
+  background-color: rgba(60, 67, 73, 0.50);
+}
