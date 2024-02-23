@@ -44,7 +44,7 @@ export class PlanetsComponent implements OnInit {
         this.totalPlanets = response.count;
         this.nextPage = response.next;
         this.prevPage = response.previous;
-  
+
         if (!this.prevPage) {
           this.isPrevDisabled = true;
         }

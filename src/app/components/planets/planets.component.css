@@ -1,4 +1,6 @@
 p {
+  color: #0056b3;
+  font-weight: 700;
   margin: 10px;
 }
 .planets-container {
@@ -12,16 +14,18 @@ p {
   margin-bottom: 20px;
   margin-left: auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #B5B7B7;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 .planet-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0px 0px 4px 1px #FADE4B;
 }
 .planet-card h2 {
+  color: #000;
   font-size: 1.8rem;
   margin-bottom: 10px;
 }
@@ -30,7 +34,10 @@ p {
 }
 .planet-info label {
   font-weight: bold;
-  color: #333;
+  color: #111;
+}
+.planet-card span {
+  color: #000;
 }
 .planet-residents {
   margin-top: 10px;
@@ -43,6 +50,47 @@ p {
 .resident-list-item {
   margin-bottom: 5px;
   color: #666;
+}
+.notch-contain {
+  background-color: #eee;
+  position: absolute;
+  bottom: -14px;
+  height: 14px;
+  left: 0;
+  width: 100%;
+  display: block;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  overflow: hidden;
+  z-index: 1;
+}
+.notch-contain::before{
+  left: 0;
+  border-right: 14px solid transparent;
+  width: 70%;
+  bottom: 0;
+  top: auto;
+  border-top: 14px solid #1D1E1F;
+  content: "";
+  width: 0;
+  z-index: -2;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+}
+.notch-contain::after {
+  right: 0;
+  border-left: 14px solid transparent;
+  width: 10%;
+  bottom: 0;
+  top: auto;
+  border-top: 14px solid #1D1E1F;
+  content: "";
+  width: 0;
+  z-index: -2;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
 }
 
 /* Responsive Layout */
