@@ -21,7 +21,6 @@ p {
 }
 .planet-card:hover {
   transform: translateY(-5px);
-  /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); */
   box-shadow: 0px 0px 4px 1px #FADE4B;
 }
 .planet-card h2 {
@@ -93,20 +92,28 @@ p {
   position: absolute;
 }
 
-/* Responsive Layout */
 @media screen and (max-width: 1024px) {
+  .planets-container{
+    width: fit-content;
+  }
   .planet-card {
     width: calc(45% - 20px);
   }
 }
 
 @media screen and (max-width: 768px) {
+  .planets-container{
+    width: fit-content;
+  }
   .planet-card {
-    width: calc(50% - 20px);
+    width: calc(45% - 20px);
   }
 }
 
 @media screen and (max-width: 480px) {
+  .planets-container{
+    width: fit-content;
+  }
   .planet-card {
     width: 100%;
   }
