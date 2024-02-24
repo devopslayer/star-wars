@@ -37,7 +37,7 @@ To run this project locally, follow these steps:
 2. Navigate to the project directory:
 
     ```bash
-    cd star-wars-planets-directory
+    cd star-wars
     ```
 
 3. Install dependencies:
@@ -64,7 +64,7 @@ This project can be deployed to a free hosting service such as GitHub Pages, Ver
     ng build --prod
     ```
 
-2. Deploy the `dist` folder generated in the `star-wars-planets-directory` directory to your preferred hosting service.
+2. Deploy the `dist` folder generated in the `star-wars` directory to your preferred hosting service.
 
 3. Ensure that your hosting service supports Angular applications and configure any necessary settings.
 
@@ -87,3 +87,4 @@ This project can be deployed to a free hosting service such as GitHub Pages, Ver
 ## Contributors
 
 - [Devopslayer](https://github.com/devopslayer)
+- [Angular Documentation](https://angular.io/docs)
